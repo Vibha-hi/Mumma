@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Mom ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --night:#070818; --deep:#141842; --gold:#ffd98a; --rose:#ff9db5; --mist:#d9dcff;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;height:100%;overflow:hidden;color:var(--mist);font-family:var(--serif);
+  background:radial-gradient(120% 90% at 50% 110%,var(--deep) 0%,var(--night) 65%);
+}
+#bg{position:fixed;inset:0;pointer-events:none}
+.dot{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
+
+main{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 16px 16px}
+h1{margin:0;font-weight:500;font-style:italic;font-size:clamp(1.7rem,6vw,2.8rem);text-align:center;line-height:1.15}
+.sub{margin:8px 0 0;font-size:clamp(1.05rem,3.4vw,1.3rem);text-align:center;opacity:.85;min-height:1.6em}
+.stage{position:relative;flex:1;width:min(100%,560px);margin-top:8px;min-height:0}
+svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.seg{stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:0;transition:opacity 1.2s}
+.seg.on{opacity:.7}
+.star{
+  position:absolute;width:48px;height:48px;margin:-24px 0 0 -24px;border:0;padding:0;background:none;cursor:pointer;border-radius:50%;
+}
+.star::before{
+  content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;
+  background:#fff;box-shadow:0 0 12px 4px rgba(255,255,255,.55);animation:pulse 2.4s ease-in-out infinite;transition:background .6s,box-shadow .6s;
+}
+.star.seen::before{background:var(--gold);box-shadow:0 0 18px 7px rgba(255,217,138,.6);animation:none}
+.star:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@keyframes pulse{0%,100%{transform:scale(.8)}50%{transform:scale(1.25)}}
+.count{font-size:1.05rem;opacity:.75;margin:6px 0 0}
+
+.card{
+  position:fixed;left:0;right:0;bottom:0;padding:26px 24px calc(26px + env(safe-area-inset-bottom,0px));
+  background:linear-gradient(180deg,rgba(20,24,66,.96),rgba(7,8,24,.99));border-top:1px solid rgba(255,217,138,.35);
+  transform:translateY(110%);transition:transform .5s cubic-bezier(.2,.8,.2,1);text-align:center;
+}
+.card.open{transform:none}
+.card h2{margin:0 0 10px;font-style:italic;font-weight:600;font-size:1.7rem;color:var(--gold)}
+.card p{margin:0 auto 18px;max-width:34ch;font-size:1.3rem;line-height:1.5}
+.btn{font:inherit;font-size:1.15rem;color:var(--night);background:var(--gold);border:0;border-radius:999px;padding:10px 26px;cursor:pointer}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+#intro,#end{
+  position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;
+  background:radial-gradient(120% 90% at 50% 110%,var(--deep) 0%,var(--night) 65%);transition:opacity 1.4s;
+}
+#intro h1{font-size:clamp(2.2rem,9vw,4rem)}
+#intro p,#end p{max-width:30ch;font-size:1.35rem;line-height:1.5;margin:14px 0 26px}
+#end{opacity:0;pointer-events:none;background:rgba(7,8,24,.9)}
+#end.show{opacity:1;pointer-events:auto}
+#end h1{color:var(--gold);font-size:clamp(2.4rem,10vw,4.2rem)}
+.hide{opacity:0;pointer-events:none}
+#end{justify-content:flex-start;overflow-y:auto}
+.endin{position:relative;z-index:1;margin:auto 0;padding-top:48px;display:flex;flex-direction:column;align-items:center}
+#end.show .endin>*{animation:up .9s cubic-bezier(.2,.8,.2,1) calc(var(--i)*.35s) both}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+#end .dear{margin:0;font-size:1.9rem;color:var(--rose);font-style:italic}
+.nm{background:linear-gradient(100deg,#ffd98a 20%,#fff 40%,#ffb4c6 60%,#ffd98a 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 5s linear infinite}
+@keyframes shim{to{background-position:-250% 0}}
+#end h1{margin:2px 0 0}
+.cake{width:min(62vw,230px);margin:2px 0 0}
+.cake svg{position:static;inset:auto;height:auto;overflow:visible}
+.fl{fill:#ffc857;transform-box:fill-box;transform-origin:50% 100%;animation:flick .35s ease-in-out infinite alternate;transition:opacity .5s}
+.gl{fill:#ffd98a;opacity:.25;transition:opacity .5s}
+.out .fl,.out .gl{opacity:0}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(.88,1.14) rotate(4deg)}}
+#end .wishmsg{margin:8px 0 18px;font-size:1.3rem;min-height:3em}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.ghost{background:transparent;color:var(--gold);border:1px solid rgba(255,217,138,.6)}
+#fx{position:fixed;inset:0;z-index:7;pointer-events:none}
+#balloons{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.balloon{position:absolute;bottom:-150px;width:54px;height:68px;background:var(--c);border-radius:50% 50% 48% 48%;scale:var(--s);opacity:.9}
+.balloon::before{content:"";position:absolute;left:12px;top:10px;width:10px;height:18px;border-radius:50%;background:rgba(255,255,255,.35);transform:rotate(25deg)}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:60px;background:rgba(255,255,255,.4)}
+#end.show .balloon{animation:rise var(--d) ease-in-out var(--dl) infinite}
+@keyframes rise{0%{transform:translate(0,0)}50%{transform:translate(16px,-65vh)}100%{transform:translate(-8px,-130vh)}}
+#flags{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;justify-content:space-around;pointer-events:none;z-index:2}
+#flags::before{content:"";position:absolute;top:0;left:0;right:0;height:1.5px;background:rgba(255,255,255,.3)}
+#flags i{width:26px;height:34px;background:var(--c);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;animation:sway 2.8s ease-in-out var(--dl) infinite alternate}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+#ibal{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#intro .balloon{animation:rise var(--d) ease-in-out var(--dl) infinite}
+#intro.hide .balloon{animation-play-state:paused}
+.iin{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+#intro .hint{margin:0 0 10px;opacity:.7;font-size:1.1rem}
+.gift{width:min(48vw,170px);background:none;border:0;padding:0;margin:8px 0;cursor:pointer;animation:wob 2.6s ease-in-out infinite}
+.gift:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:12px}
+.gift.opened{animation:none;cursor:default}
+.gift svg{position:static;inset:auto;height:auto;overflow:visible}
+@keyframes wob{0%,45%,100%{transform:rotate(0)}10%{transform:rotate(-5deg)}20%{transform:rotate(5deg)}30%{transform:rotate(-3deg)}38%{transform:rotate(2deg)}}
+.lid{transform-box:fill-box;transform-origin:center;transition:transform .9s cubic-bezier(.3,1.4,.5,1),opacity .9s}
+.opened .lid{transform:translateY(-80px) rotate(-22deg);opacity:0}
+.gw{opacity:0;transform-box:fill-box;transform-origin:center}
+.opened .gw{animation:glow 1.3s ease-out}
+@keyframes glow{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(10)}}
+#go{display:none}
+#intro.opened .hint{display:none}
+#intro.opened #go{display:inline-block;animation:up .9s cubic-bezier(.2,.8,.2,1) .8s both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="bg" aria-hidden="true"></div>
+
+<main>
+  <h1>Happy Birthday, Mom</h1>
+  <p class="sub" id="sub">Every star in this sky is a reason I love you.</p>
+  <div class="stage" id="stage">
+    <svg id="lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+  </div>
+  <p class="count" id="count">0 of 12 stars found</p>
+</main>
+
+<div class="card" id="card" role="dialog" aria-live="polite">
+  <h2 id="ct"></h2><p id="cp"></p>
+  <button class="btn" id="cb">Back to the sky</button>
+</div>
+
+<div id="end">
+  <div id="balloons" aria-hidden="true"></div>
+  <div id="flags" aria-hidden="true"></div>
+  <div class="endin">
+    <p class="dear" style="--i:1">Dear Mom,</p>
+    <h1 style="--i:2"><span class="nm">Namrata</span></h1>
+    <p style="--i:3">That’s the whole sky. You are my strength, my best friend and my favorite person. Thank you for everything, Mom. I love you.</p>
+    <div class="cake" id="cake" style="--i:4">
+      <svg viewBox="0 0 200 170" role="img" aria-label="Birthday cake with lit candles">
+        <ellipse cx="100" cy="158" rx="94" ry="9" fill="#1d2150"/>
+        <rect x="18" y="112" width="164" height="44" rx="10" fill="#ff9db5"/>
+        <path d="M18 120q10 14 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0L182 120V110H18z" fill="#fff3f6"/>
+        <rect x="38" y="76" width="124" height="38" rx="9" fill="#ffd98a"/>
+        <path d="M38 84q10 12 20 0t20 0t20 0t20 0t20 0t20 0L162 84V74H38z" fill="#fff3f6"/>
+        <rect x="60" y="46" width="80" height="32" rx="8" fill="#c9a7ff"/>
+        <path d="M60 54q10 12 20 0t20 0t20 0t20 0L140 54V44H60z" fill="#fff3f6"/>
+        <circle cx="50" cy="136" r="3" fill="#fff"/><circle cx="100" cy="142" r="3" fill="#ffd98a"/><circle cx="150" cy="136" r="3" fill="#fff"/>
+        <circle cx="70" cy="98" r="3" fill="#ff9db5"/><circle cx="130" cy="98" r="3" fill="#c9a7ff"/>
+        <g id="cd"></g>
+      </svg>
+    </div>
+    <p class="wishmsg" id="wm" style="--i:5">Close your eyes, Mom, and make a wish.</p>
+    <div class="row" style="--i:6">
+      <button class="btn" id="wish">Blow out the candles</button>
+      <button class="btn ghost" id="eb">Look at the stars again</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="intro">
+  <div id="ibal" aria-hidden="true"></div>
+  <div class="iin">
+    <h1>Happy Birthday, Mom</h1>
+    <p id="ip">I have a little surprise for you.</p>
+    <button class="gift" id="gift" aria-label="Open your gift">
+      <svg viewBox="0 0 160 150" aria-hidden="true">
+        <circle class="gw" cx="80" cy="70" r="10" fill="#ffd98a"/>
+        <rect x="20" y="72" width="120" height="70" rx="6" fill="#ff9db5"/>
+        <rect x="72" y="72" width="16" height="70" fill="#ffd98a"/>
+        <g class="lid">
+          <rect x="12" y="48" width="136" height="26" rx="6" fill="#ff7f9e"/>
+          <rect x="72" y="48" width="16" height="26" fill="#ffd98a"/>
+          <path d="M80 48C58 16 36 34 54 46Z M80 48C102 16 124 34 106 46Z" fill="#ffd98a"/>
+          <circle cx="80" cy="46" r="6" fill="#ffb347"/>
+        </g>
+      </svg>
+    </button>
+    <p class="hint" id="hint">Tap the gift</p>
+    <button class="btn" id="go">Open the sky</button>
+  </div>
+</div>
+
+<script>
+const STARS=[
+ {x:50,y:90,t:"The kindest soul",m:"You are the kindest soul I know. Your goodness is gentle and real, and it shows in everything you do."},
+ {x:33,y:78,t:"The most loving mother",m:"Your love has never once been in doubt. I’ve always known I was loved, and that’s the greatest gift anyone can give a child."},
+ {x:18,y:60,t:"The most understanding",m:"You understand me even when I can’t find the words. No one in my life makes me feel so heard."},
+ {x:12,y:38,t:"My best friend",m:"You’re my mom, and you’re also my best friend. I can tell you anything, and I always feel lighter afterwards."},
+ {x:24,y:19,t:"Your smile and your passion",m:"I love the way you talk, I love your smile, and I love how passionate you are about everything you care about. It lights up a room."},
+ {x:41,y:17,t:"Your vision",m:"I love your vision and your foresight. You see what’s coming long before the rest of us do, and you always guide us well."},
+ {x:50,y:32,t:"I can conquer the world",m:"When you’re by my side, I feel like I can conquer the world. Nothing feels too big with you there."},
+ {x:59,y:17,t:"So confident",m:"You’re so confident, and I’m left awestruck by how perfect you are. I see it every single day."},
+ {x:76,y:19,t:"My strength",m:"Whenever I feel weak, I think of you, and I find the strength I didn’t know I had."},
+ {x:88,y:38,t:"My motivation",m:"Everything I’m working toward, I’m working toward a little bit for you. You make me want to be better."},
+ {x:82,y:60,t:"I want to be like you",m:"More than anything, I want to be like you. If I become even half the person you are, I’ll be proud."},
+ {x:67,y:78,t:"So grateful",m:"I’m so grateful that you’re my mom. I truly have no idea what I would have done without you."}
+];
+const $=id=>document.getElementById(id);
+const stage=$('stage'),lines=$('lines'),card=$('card');
+const seen=new Set();
+let last=null;
+
+// background twinkles
+const bg=$('bg');
+for(let i=0;i<70;i++){
+  const d=document.createElement('i');d.className='dot';
+  const s=Math.random()*2+1;
+  d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${s}px;height:${s}px;animation-delay:${Math.random()*4}s;animation-duration:${3+Math.random()*4}s`;
+  bg.appendChild(d);
+}
+
+// lines (closed loop, shown when both ends are found)
+const segs=STARS.map((a,i)=>{
+  const b=STARS[(i+1)%STARS.length];
+  const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+  l.setAttribute('x1',a.x);l.setAttribute('y1',a.y);l.setAttribute('x2',b.x);l.setAttribute('y2',b.y);
+  l.setAttribute('class','seg');lines.appendChild(l);return l;
+});
+
+const btns=STARS.map((s,i)=>{
+  const b=document.createElement('button');
+  b.className='star';b.style.left=s.x+'%';b.style.top=s.y+'%';
+  b.setAttribute('aria-label','Star: '+s.t);
+  b.onclick=()=>{
+    last=b;seen.add(i);b.classList.add('seen');
+    $('ct').textContent=s.t;$('cp').textContent=s.m;
+    card.classList.add('open');$('cb').focus();
+    segs.forEach((l,j)=>l.classList.toggle('on',seen.has(j)&&seen.has((j+1)%STARS.length)));
+    $('count').textContent=seen.size+' of '+STARS.length+' stars found';
+    if(seen.size===STARS.length)$('sub').textContent='You found them all.';
+    else $('sub').textContent='Tap a star.';
+  };
+  stage.appendChild(b);return b;
+});
+
+$('cb').onclick=()=>{
+  card.classList.remove('open');
+  if(seen.size===STARS.length)setTimeout(showEnd,700);
+  else if(last)last.focus();
+};
+$('eb').onclick=()=>$('end').classList.remove('show');
+$('go').onclick=()=>{$('intro').classList.add('hide');setTimeout(()=>btns[0].focus({preventScroll:true}),300)};
+// ---- birthday celebration ----
+const fx=$('fx'),ctx=fx.getContext('2d'),calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let parts=[],raf=0;
+function fit(){fx.width=innerWidth;fx.height=innerHeight}
+fit();addEventListener('resize',fit);
+const COLS=['#ffd98a','#ff9db5','#d9dcff','#8fd3ff','#c9a7ff','#ffffff'];
+function burst(x,y,n){
+  if(calm)return;
+  for(let i=0;i<n;i++){const a=Math.random()*6.28,s=4+Math.random()*9;
+    parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6,w:6+Math.random()*6,h:4+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:COLS[i%6],life:120+Math.random()*60});}
+  if(!raf)raf=requestAnimationFrame(tick);
+}
+function rain(n){
+  if(calm)return;
+  for(let i=0;i<n;i++)parts.push({x:Math.random()*fx.width,y:-20-Math.random()*300,vx:(Math.random()-.5)*2,vy:1+Math.random()*2,w:6+Math.random()*5,h:4+Math.random()*4,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:COLS[i%6],life:420});
+  if(!raf)raf=requestAnimationFrame(tick);
+}
+function tick(){
+  ctx.clearRect(0,0,fx.width,fx.height);
+  parts=parts.filter(p=>p.life>0&&p.y<fx.height+30);
+  for(const p of parts){
+    p.vy=Math.min(p.vy+.12,4.5);p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life--;
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.globalAlpha=Math.min(1,p.life/40);
+    ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+  }
+  raf=parts.length?requestAnimationFrame(tick):0;
+}
+const BC=['#ff9db5','#ffd98a','#8fd3ff','#c9a7ff','#ff8a7a','#9be3b5'];
+for(let i=0;i<9;i++){const b=document.createElement('i');b.className='balloon';
+  b.style.cssText=`left:${4+i*11}%;--c:${BC[i%6]};--d:${12+(i%4)*2}s;--dl:${(i*0.9).toFixed(1)}s;--s:${(.8+(i%3)*.15).toFixed(2)}`;$('balloons').appendChild(b);}
+for(let i=0;i<14;i++){const f=document.createElement('i');f.style.cssText=`--c:${BC[i%6]};--dl:${(i*0.15).toFixed(2)}s`;$('flags').appendChild(f);}
+$('cd').innerHTML=[70,85,100,115,130].map((x,i)=>`<rect x="${x-2.5}" y="26" width="5" height="20" rx="2" fill="${BC[i]}"/><circle class="gl" cx="${x}" cy="16" r="10"/><path class="fl" style="animation-delay:${i*.07}s" transform="translate(${x},24)" d="M0-12C5-6 5-1 0 2C-5-1-5-6 0-12Z"/>`).join('');
+for(let i=0;i<7;i++){const b=document.createElement('i');b.className='balloon';
+  b.style.cssText=`left:${6+i*14}%;--c:${BC[(i+2)%6]};--d:${13+(i%3)*2}s;--dl:${(i*1.1).toFixed(1)}s;--s:${(.75+(i%3)*.15).toFixed(2)}`;$('ibal').appendChild(b);}
+$('gift').onclick=()=>{
+  const it=$('intro');if(it.classList.contains('opened'))return;
+  it.classList.add('opened');$('gift').classList.add('opened');
+  const r=$('gift').getBoundingClientRect();
+  burst(r.left+r.width/2,r.top+r.height*.4,160);
+  setTimeout(()=>burst(innerWidth*.25,r.top,70),350);
+  setTimeout(()=>burst(innerWidth*.75,r.top,70),600);
+  $('ip').textContent='Inside is a sky full of stars, one for every reason I love you.';
+  setTimeout(()=>$('go').focus({preventScroll:true}),900);
+};
+function showEnd(){
+  $('cake').classList.remove('out');$('wm').textContent='Close your eyes, Mom, and make a wish.';$('wish').textContent='Blow out the candles';
+  $('end').classList.add('show');
+  setTimeout(()=>burst(innerWidth/2,innerHeight*.35,150),500);
+  setTimeout(()=>burst(innerWidth*.2,innerHeight*.5,70),1100);
+  setTimeout(()=>burst(innerWidth*.8,innerHeight*.5,70),1400);
+  setTimeout(()=>rain(90),1800);
+}
+$('wish').onclick=()=>{
+  const c=$('cake'),out=!c.classList.contains('out');
+  c.classList.toggle('out',out);
+  $('wm').textContent=out?'Happy Birthday, Mom! May every wish you make come true.':'Close your eyes, Mom, and make a wish.';
+  $('wish').textContent=out?'Light the candles again':'Blow out the candles';
+  if(out){const r=c.getBoundingClientRect();burst(r.left+r.width/2,r.top+20,170);setTimeout(()=>rain(70),400);}
+};
+</script>
+</body>
+</html>
